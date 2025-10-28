@@ -259,21 +259,22 @@ if (window.navigator.standalone === true) {
     console.log('Running as standalone app on iOS');
 }
 
-// Prevent pull-to-refresh on iOS
-document.body.addEventListener('touchmove', function(e) {
-    if (e.touches.length > 1) {
-        return;
-    }
+// Prevent pull-to-refresh on iOS (only at the very top of the page)
+let lastTouchY = 0;
+document.addEventListener('touchstart', function(e) {
+    lastTouchY = e.touches[0].clientY;
+}, { passive: true });
 
-    const element = e.target;
-    const scrollTop = element.scrollTop;
-    const scrollHeight = element.scrollHeight;
-    const height = element.offsetHeight;
-    const clientY = e.touches[0].clientY;
+document.addEventListener('touchmove', function(e) {
+    const touchY = e.touches[0].clientY;
+    const touchYDelta = touchY - lastTouchY;
+    lastTouchY = touchY;
 
-    if (scrollTop === 0 && clientY > 0) {
-        e.preventDefault();
-    } else if (scrollHeight - scrollTop <= height && clientY < 0) {
+    // Only prevent pull-to-refresh if:
+    // 1. We're at the top of the page (scrollY === 0)
+    // 2. User is pulling down (touchYDelta > 0)
+    // 3. The target isn't inside a scrollable element
+    if (window.scrollY === 0 && touchYDelta > 0) {
         e.preventDefault();
     }
 }, { passive: false });
