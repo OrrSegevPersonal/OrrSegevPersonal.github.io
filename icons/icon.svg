@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#67B7E8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="url(#bgGradient)" />
+
+  <!-- Water drop -->
+  <path d="M 256 128
+           C 256 128, 180 220, 180 300
+           C 180 342, 214 384, 256 384
+           C 298 384, 332 342, 332 300
+           C 332 220, 256 128, 256 128 Z"
+        fill="white" />
+
+  <!-- Highlight -->
+  <ellipse cx="230" cy="240" rx="30" ry="45"
+           fill="white" opacity="0.3"
+           transform="rotate(-20 230 240)" />
+</svg>
