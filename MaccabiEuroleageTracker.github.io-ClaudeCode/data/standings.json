@@ -1,0 +1,161 @@
+{
+  "last_updated": "2024-01-15T10:00:00Z",
+  "season": 2024,
+  "competition": "Euroleague",
+  "total_teams": 18,
+  "maccabi_standing": {
+    "position": 6,
+    "Team": "Maccabi Playtika Tel Aviv",
+    "TeamCode": "TEL",
+    "W": 12,
+    "L": 8,
+    "PointsFor": 1680,
+    "PointsAgainst": 1640
+  },
+  "all_teams": [
+    {
+      "Team": "Real Madrid",
+      "TeamCode": "MAD",
+      "W": 17,
+      "L": 3,
+      "PointsFor": 1750,
+      "PointsAgainst": 1550
+    },
+    {
+      "Team": "Olympiacos Piraeus",
+      "TeamCode": "OLY",
+      "W": 15,
+      "L": 5,
+      "PointsFor": 1700,
+      "PointsAgainst": 1600
+    },
+    {
+      "Team": "FC Barcelona",
+      "TeamCode": "BAR",
+      "W": 14,
+      "L": 6,
+      "PointsFor": 1720,
+      "PointsAgainst": 1620
+    },
+    {
+      "Team": "Monaco",
+      "TeamCode": "MON",
+      "W": 14,
+      "L": 6,
+      "PointsFor": 1690,
+      "PointsAgainst": 1610
+    },
+    {
+      "Team": "Fenerbahce Istanbul",
+      "TeamCode": "FEN",
+      "W": 13,
+      "L": 7,
+      "PointsFor": 1680,
+      "PointsAgainst": 1630
+    },
+    {
+      "Team": "Maccabi Playtika Tel Aviv",
+      "TeamCode": "TEL",
+      "W": 12,
+      "L": 8,
+      "PointsFor": 1680,
+      "PointsAgainst": 1640
+    },
+    {
+      "Team": "Panathinaikos Athens",
+      "TeamCode": "PAO",
+      "W": 12,
+      "L": 8,
+      "PointsFor": 1650,
+      "PointsAgainst": 1630
+    },
+    {
+      "Team": "Partizan Belgrade",
+      "TeamCode": "PAR",
+      "W": 11,
+      "L": 9,
+      "PointsFor": 1620,
+      "PointsAgainst": 1640
+    },
+    {
+      "Team": "Bayern Munich",
+      "TeamCode": "BAY",
+      "W": 10,
+      "L": 10,
+      "PointsFor": 1600,
+      "PointsAgainst": 1620
+    },
+    {
+      "Team": "Anadolu Efes Istanbul",
+      "TeamCode": "EFS",
+      "W": 9,
+      "L": 11,
+      "PointsFor": 1580,
+      "PointsAgainst": 1640
+    },
+    {
+      "Team": "Virtus Bologna",
+      "TeamCode": "VIR",
+      "W": 9,
+      "L": 11,
+      "PointsFor": 1570,
+      "PointsAgainst": 1650
+    },
+    {
+      "Team": "Baskonia Vitoria",
+      "TeamCode": "BAS",
+      "W": 8,
+      "L": 12,
+      "PointsFor": 1550,
+      "PointsAgainst": 1660
+    },
+    {
+      "Team": "Zalgiris Kaunas",
+      "TeamCode": "ZAL",
+      "W": 7,
+      "L": 13,
+      "PointsFor": 1530,
+      "PointsAgainst": 1670
+    },
+    {
+      "Team": "Maccabi Tel Aviv",
+      "TeamCode": "MTA",
+      "W": 7,
+      "L": 13,
+      "PointsFor": 1520,
+      "PointsAgainst": 1680
+    },
+    {
+      "Team": "ALBA Berlin",
+      "TeamCode": "BER",
+      "W": 6,
+      "L": 14,
+      "PointsFor": 1490,
+      "PointsAgainst": 1700
+    },
+    {
+      "Team": "LDLC ASVEL",
+      "TeamCode": "ASV",
+      "W": 5,
+      "L": 15,
+      "PointsFor": 1470,
+      "PointsAgainst": 1720
+    },
+    {
+      "Team": "Crvena Zvezda Belgrade",
+      "TeamCode": "CZV",
+      "W": 5,
+      "L": 15,
+      "PointsFor": 1460,
+      "PointsAgainst": 1730
+    },
+    {
+      "Team": "Valencia Basket",
+      "TeamCode": "VBC",
+      "W": 4,
+      "L": 16,
+      "PointsFor": 1440,
+      "PointsAgainst": 1750
+    }
+  ]
+}

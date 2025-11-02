@@ -1,0 +1,16 @@
+{
+  "last_updated": "2024-01-15T10:00:00Z",
+  "season": 2024,
+  "team": "Maccabi Tel Aviv",
+  "team_code": "TEL",
+  "stats": {
+    "Team": "Maccabi Playtika Tel Aviv",
+    "TeamCode": "TEL",
+    "GamesPlayed": 20,
+    "PointsFor": 1680,
+    "PointsAgainst": 1640,
+    "PointDifference": 40,
+    "AvgPointsFor": 84.0,
+    "AvgPointsAgainst": 82.0
+  }
+}

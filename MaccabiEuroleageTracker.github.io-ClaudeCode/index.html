@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Maccabi Tel Aviv Euroleague Tracker</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Real-time standings, scores & playoff predictions for Maccabi Tel Aviv in Euroleague">
+    <meta name="theme-color" content="#0047BA">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Maccabi Tracker">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-192x192.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-72x72.png">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🏀 Maccabi Tel Aviv Euroleague Tracker</h1>
+                <p class="subtitle">Real-time standings, scores & playoff predictions</p>
+            </div>
+            <div class="last-updated" id="lastUpdated">
+                Last updated: Loading...
+            </div>
+        </header>
+
+        <main>
+            <!-- Current Standing Card -->
+            <section class="card current-standing">
+                <h2>Current Standing</h2>
+                <div class="standing-grid">
+                    <div class="stat-box position">
+                        <div class="stat-label">Position</div>
+                        <div class="stat-value" id="currentPosition">-</div>
+                        <div class="stat-sublabel">out of 18 teams</div>
+                    </div>
+                    <div class="stat-box record">
+                        <div class="stat-label">Record</div>
+                        <div class="stat-value" id="currentRecord">-</div>
+                        <div class="stat-sublabel">Win - Loss</div>
+                    </div>
+                    <div class="stat-box win-pct">
+                        <div class="stat-label">Win %</div>
+                        <div class="stat-value" id="winPercentage">-</div>
+                    </div>
+                    <div class="stat-box remaining">
+                        <div class="stat-label">Games Left</div>
+                        <div class="stat-value" id="gamesRemaining">-</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Playoff Probabilities Card -->
+            <section class="card probabilities">
+                <div class="card-header">
+                    <h2>Playoff Probabilities</h2>
+                    <button class="info-button" id="probabilityInfoBtn" aria-label="Information about playoff probability calculation">
+                        ℹ️
+                    </button>
+                </div>
+
+                <div class="probability-grid">
+                    <div class="probability-box playoff">
+                        <div class="probability-icon">🎯</div>
+                        <div class="probability-label">Playoff Qualification</div>
+                        <div class="probability-value" id="playoffProb">-%</div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" id="playoffBar" style="width: 0%"></div>
+                        </div>
+                        <div class="probability-sublabel">Top 8 teams advance</div>
+                    </div>
+
+                    <div class="probability-box final-four">
+                        <div class="probability-icon">🏆</div>
+                        <div class="probability-label">Final Four</div>
+                        <div class="probability-value" id="finalFourProb">-%</div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" id="finalFourBar" style="width: 0%"></div>
+                        </div>
+                        <div class="probability-sublabel">Top 4 teams advance</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Games Card -->
+            <section class="card recent-games">
+                <h2>Recent Games</h2>
+                <div class="games-list" id="gamesList">
+                    <div class="loading">Loading recent games...</div>
+                </div>
+            </section>
+
+            <!-- Full Standings Card -->
+            <section class="card full-standings">
+                <h2>Euroleague Standings</h2>
+                <div class="standings-table-container">
+                    <table class="standings-table" id="standingsTable">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>Win%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="loading">Loading standings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sourced from Euroleague API | Probabilities calculated using Monte Carlo simulation</p>
+        </footer>
+    </div>
+
+    <!-- Tooltip Modal -->
+    <div class="modal" id="probabilityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>How Playoff Probabilities Are Calculated</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-intro">
+                    We use a <strong>Monte Carlo simulation</strong> to predict Maccabi's chances of reaching the playoffs and Final Four. Here's how it works:
+                </p>
+
+                <div class="methodology-section">
+                    <h4>📊 The Process</h4>
+                    <ol>
+                        <li>We simulate the remainder of the Euroleague season <strong>10,000 times</strong></li>
+                        <li>Each simulation plays out all remaining games based on team strength and current form</li>
+                        <li>We count how many simulations result in Maccabi finishing in the top 8 (playoffs) or top 4 (Final Four)</li>
+                        <li>The percentage of successful simulations becomes the probability</li>
+                    </ol>
+                </div>
+
+                <div class="methodology-section">
+                    <h4>⚖️ Factors Considered</h4>
+                    <ul class="factors-list">
+                        <li>
+                            <strong>Current Standings (40%)</strong>
+                            <span>Current position and wins accumulated</span>
+                        </li>
+                        <li>
+                            <strong>Team Strength (25%)</strong>
+                            <span>Win rate and point differential</span>
+                        </li>
+                        <li>
+                            <strong>Recent Form (20%)</strong>
+                            <span>Performance in last 5 games</span>
+                        </li>
+                        <li>
+                            <strong>Point Differential (15%)</strong>
+                            <span>Average margin of victory/defeat</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="methodology-section">
+                    <h4>🎲 Why Monte Carlo?</h4>
+                    <p>
+                        Sports outcomes are inherently unpredictable. Monte Carlo simulation accounts for this uncertainty by running thousands of "what-if" scenarios. This gives us a probability range rather than a single prediction, which is more realistic for sports forecasting.
+                    </p>
+                </div>
+
+                <div class="methodology-note">
+                    <strong>Note:</strong> These probabilities update daily based on the latest game results and standings. They represent statistical likelihoods, not guarantees!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Banner (will be shown programmatically) -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-banner-text">
+            <div class="install-banner-title">Install Maccabi Tracker</div>
+            <div class="install-banner-subtitle">Add to home screen for quick access</div>
+        </div>
+        <button id="installButton">Install</button>
+        <button class="dismiss" id="dismissInstall">&times;</button>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#0047BA"/>
+
+  <!-- Basketball Circle -->
+  <circle cx="256" cy="256" r="140" fill="#FFD700"/>
+
+  <!-- Basketball lines -->
+  <path d="M 256 116 Q 320 256 256 396" stroke="#0047BA" stroke-width="8" fill="none"/>
+  <path d="M 256 116 Q 192 256 256 396" stroke="#0047BA" stroke-width="8" fill="none"/>
+  <path d="M 116 256 Q 256 220 396 256" stroke="#0047BA" stroke-width="8" fill="none"/>
+  <path d="M 116 256 Q 256 292 396 256" stroke="#0047BA" stroke-width="8" fill="none"/>
+
+  <!-- Center circle -->
+  <circle cx="256" cy="256" r="140" stroke="#0047BA" stroke-width="8" fill="none"/>
+</svg>

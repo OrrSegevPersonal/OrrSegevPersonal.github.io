@@ -1,0 +1,34 @@
+{
+  "last_updated": "2024-01-15T10:00:00Z",
+  "team": "Maccabi Tel Aviv",
+  "team_code": "TEL",
+  "current_stats": {
+    "position": 6,
+    "wins": 12,
+    "losses": 8,
+    "games_played": 20,
+    "games_remaining": 14,
+    "win_percentage": 60.0
+  },
+  "probabilities": {
+    "playoff": 78.5,
+    "final_four": 32.4
+  },
+  "factors": {
+    "team_strength": 0.625,
+    "recent_form_factor": 1.12,
+    "simulations_run": 10000
+  },
+  "methodology": {
+    "description": "Monte Carlo simulation of remaining season",
+    "simulations": 10000,
+    "factors_considered": [
+      "Current standings (40% weight)",
+      "Team strength from win rate and point differential (25% weight)",
+      "Recent form - last 5 games (20% weight)",
+      "Point differential (15% weight)"
+    ],
+    "playoff_cutoff": 8,
+    "final_four_cutoff": 4
+  }
+}

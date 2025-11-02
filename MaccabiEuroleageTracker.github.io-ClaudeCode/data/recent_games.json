@@ -1,0 +1,53 @@
+{
+  "last_updated": "2024-01-15T10:00:00Z",
+  "season": 2024,
+  "team": "Maccabi Tel Aviv",
+  "games_count": 5,
+  "games": [
+    {
+      "Round": 20,
+      "Home": "Maccabi Playtika Tel Aviv",
+      "HomeTeamCode": "TEL",
+      "Away": "Panathinaikos Athens",
+      "AwayTeamCode": "PAO",
+      "HomePoints": 88,
+      "AwayPoints": 82
+    },
+    {
+      "Round": 19,
+      "Home": "Fenerbahce Istanbul",
+      "HomeTeamCode": "FEN",
+      "Away": "Maccabi Playtika Tel Aviv",
+      "AwayTeamCode": "TEL",
+      "HomePoints": 91,
+      "AwayPoints": 85
+    },
+    {
+      "Round": 18,
+      "Home": "Maccabi Playtika Tel Aviv",
+      "HomeTeamCode": "TEL",
+      "Away": "Bayern Munich",
+      "AwayTeamCode": "BAY",
+      "HomePoints": 93,
+      "AwayPoints": 87
+    },
+    {
+      "Round": 17,
+      "Home": "Real Madrid",
+      "HomeTeamCode": "MAD",
+      "Away": "Maccabi Playtika Tel Aviv",
+      "AwayTeamCode": "TEL",
+      "HomePoints": 96,
+      "AwayPoints": 78
+    },
+    {
+      "Round": 16,
+      "Home": "Maccabi Playtika Tel Aviv",
+      "HomeTeamCode": "TEL",
+      "Away": "ALBA Berlin",
+      "AwayTeamCode": "BER",
+      "HomePoints": 101,
+      "AwayPoints": 79
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+/* Maccabi Tel Aviv Euroleague Tracker Styles */
+/* Color scheme: Maccabi blue and yellow */
+
+:root {
+    --maccabi-blue: #0047BA;
+    --maccabi-yellow: #FFD700;
+    --dark-blue: #003087;
+    --light-blue: #4A90E2;
+    --success-green: #4CAF50;
+    --warning-orange: #FF9800;
+    --danger-red: #f44336;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 16px rgba(0, 71, 186, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    /* Safe area insets for notched devices */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    /* Prevent pull-to-refresh on iOS when scrolling */
+    overscroll-behavior-y: contain;
+    /* Better touch scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--maccabi-blue) 0%, var(--dark-blue) 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.last-updated {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    backdrop-filter: blur(10px);
+}
+
+/* Cards */
+.card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card h2 {
+    color: var(--maccabi-blue);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+    border-bottom: 3px solid var(--maccabi-yellow);
+    padding-bottom: 10px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    margin-bottom: 0;
+}
+
+/* Current Standing */
+.standing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--maccabi-blue);
+}
+
+.stat-box.position {
+    border-left: 4px solid var(--maccabi-blue);
+}
+
+.stat-box.record {
+    border-left: 4px solid var(--success-green);
+}
+
+.stat-box.win-pct {
+    border-left: 4px solid var(--warning-orange);
+}
+
+.stat-box.remaining {
+    border-left: 4px solid var(--light-blue);
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 10px 0;
+}
+
+.stat-sublabel {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+/* Probabilities */
+.info-button {
+    background: var(--maccabi-yellow);
+    border: none;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Better touch feedback */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.info-button:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: #FFC700;
+}
+
+.probability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.probability-box {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.probability-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 71, 186, 0.15);
+}
+
+.probability-box.playoff {
+    border-top: 4px solid var(--light-blue);
+}
+
+.probability-box.final-four {
+    border-top: 4px solid var(--maccabi-yellow);
+}
+
+.probability-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.probability-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.probability-value {
+    font-size: 3.5em;
+    font-weight: 700;
+    color: var(--maccabi-blue);
+    margin: 15px 0;
+}
+
+.probability-bar {
+    background: #e0e0e0;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.probability-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--maccabi-blue) 0%, var(--light-blue) 100%);
+    border-radius: 6px;
+    transition: width 1s ease-out;
+}
+
+.probability-sublabel {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+/* Recent Games */
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-item {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--border-color);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.game-item:hover {
+    transform: translateX(5px);
+}
+
+.game-item.win {
+    border-left-color: var(--success-green);
+    background: linear-gradient(90deg, rgba(76, 175, 80, 0.05) 0%, var(--bg-light) 100%);
+}
+
+.game-item.loss {
+    border-left-color: var(--danger-red);
+    background: linear-gradient(90deg, rgba(244, 67, 54, 0.05) 0%, var(--bg-light) 100%);
+}
+
+.game-info {
+    flex: 1;
+}
+
+.game-round {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.game-teams {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.game-score {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--maccabi-blue);
+    min-width: 100px;
+    text-align: right;
+}
+
+.game-result {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    min-width: 60px;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.game-result.win {
+    background: var(--success-green);
+    color: white;
+}
+
+.game-result.loss {
+    background: var(--danger-red);
+    color: white;
+}
+
+/* Standings Table */
+.standings-table-container {
+    overflow-x: auto;
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standings-table thead {
+    background: linear-gradient(135deg, var(--maccabi-blue) 0%, var(--dark-blue) 100%);
+    color: white;
+}
+
+.standings-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.standings-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.standings-table tbody tr {
+    transition: background 0.2s;
+}
+
+.standings-table tbody tr:hover {
+    background: var(--bg-light);
+}
+
+.standings-table tbody tr.maccabi {
+    background: rgba(0, 71, 186, 0.05);
+    border-left: 4px solid var(--maccabi-blue);
+    font-weight: 600;
+}
+
+.standings-table tbody tr.playoff-zone {
+    background: rgba(76, 175, 80, 0.02);
+}
+
+.standings-table .team-name {
+    font-weight: 500;
+}
+
+.standings-table .position {
+    font-weight: 700;
+    color: var(--maccabi-blue);
+    width: 50px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--bg-white);
+    padding: 0;
+    border-radius: 16px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--maccabi-blue) 0%, var(--dark-blue) 100%);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    /* Better touch feedback */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-intro {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.methodology-section {
+    margin-bottom: 25px;
+}
+
+.methodology-section h4 {
+    color: var(--maccabi-blue);
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.methodology-section ol,
+.methodology-section ul {
+    margin-left: 20px;
+}
+
+.methodology-section li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.factors-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.factors-list li {
+    background: var(--bg-light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--maccabi-blue);
+}
+
+.factors-list li strong {
+    display: block;
+    color: var(--maccabi-blue);
+    margin-bottom: 5px;
+}
+
+.factors-list li span {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+.methodology-note {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--warning-orange);
+    margin-top: 25px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Mobile-specific enhancements */
+@media (hover: none) and (pointer: coarse) {
+    /* Better touch targets on mobile */
+    button, a, .game-item, .stat-box, .probability-box {
+        -webkit-tap-highlight-color: rgba(0, 71, 186, 0.1);
+    }
+
+    /* Active states for touch feedback */
+    .info-button:active {
+        transform: scale(0.95);
+        background: #FFC700;
+    }
+
+    .modal-close:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .game-item:active {
+        transform: translateX(3px);
+        background: #e9ecef;
+    }
+
+    .stat-box:active,
+    .probability-box:active {
+        transform: translateY(-3px);
+    }
+}
+
+/* Install prompt banner */
+.install-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--maccabi-blue) 0%, var(--dark-blue) 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    padding-bottom: calc(15px + env(safe-area-inset-bottom));
+}
+
+.install-banner.show {
+    transform: translateY(0);
+}
+
+.install-banner-text {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.install-banner-title {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.install-banner-subtitle {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.install-banner button {
+    background: var(--maccabi-yellow);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--text-primary);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.install-banner button:active {
+    transform: scale(0.95);
+}
+
+.install-banner .dismiss {
+    background: transparent;
+    color: white;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .header-content h1 {
+        font-size: 1.8em;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        font-size: 1.5em;
+    }
+
+    .standing-grid,
+    .probability-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-value {
+        font-size: 2em;
+    }
+
+    .probability-value {
+        font-size: 2.5em;
+    }
+
+    .probability-box,
+    .stat-box {
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+        margin: 10px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .game-item {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .game-score {
+        text-align: center;
+    }
+
+    .game-result {
+        margin-left: 0;
+    }
+
+    /* Better table scrolling on mobile */
+    .standings-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: -20px;
+        padding: 20px;
+    }
+
+    .standings-table th,
+    .standings-table td {
+        padding: 12px 10px;
+        font-size: 0.9em;
+    }
+
+    /* Adjust install banner for mobile */
+    .install-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .install-banner-text {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .install-banner button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5em;
+    }
+
+    .subtitle {
+        font-size: 0.95em;
+    }
+
+    .stat-value {
+        font-size: 1.8em;
+    }
+
+    .probability-value {
+        font-size: 2em;
+    }
+
+    .probability-icon {
+        font-size: 2.5em;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card h2 {
+        font-size: 1.3em;
+    }
+}
