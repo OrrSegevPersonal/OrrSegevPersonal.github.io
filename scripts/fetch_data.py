@@ -18,7 +18,7 @@ except ImportError:
 # Constants
 MACCABI_TEAM_CODE = "TEL"  # Maccabi Tel Aviv team code
 COMPETITION = "E"  # E for Euroleague
-CURRENT_SEASON = 2024  # Update this each season
+CURRENT_SEASON = 2025  # Update this each season
 DATA_DIR = Path(__file__).parent.parent / "data"
 
 
